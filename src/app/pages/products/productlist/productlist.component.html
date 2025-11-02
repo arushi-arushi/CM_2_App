@@ -85,7 +85,7 @@
                                 <td>{{ update.discount }}</td>
                                 <td>{{ update.minStock }}</td>
                                 <td>{{ update.warPeriod }}</td>
-                                <td><input pInputText type="number" [(ngModel)]="update.BarCode" placeholder="{{update.BarCode}}"></td>
+                                <td><input pInputText type="text" [(ngModel)]="update.BarCode" placeholder="{{update.BarCode}}" (keypress)="allowOnlyNumbers($event)"></td>
                                  <td>{{ update.location }}</td>
                                 <td class="text-center">
                                     <i class="pi pi-pencil cursor-pointer text-blue-500" (click)="openEditDialog(update)"></i>

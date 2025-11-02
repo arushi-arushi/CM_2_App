@@ -104,6 +104,13 @@ export class ProductlistComponent {
         this.products.forEach((p: any) => (p.selection = true));
         this.filteredProducts = [...this.products];
     }
+    allowOnlyNumbers(event:KeyboardEvent){
+        const allowedChars=/[0-9]\b/;
+        const inputChar=String.fromCharCode(event.key.charCodeAt(0));
+        if(!allowedChars.test(inputChar)){
+            event.preventDefault();
+        }
+    }
     filterProducts() {
         const category = this.updateForm.get('category')?.value;
         const item = this.updateForm.get('item')?.value;

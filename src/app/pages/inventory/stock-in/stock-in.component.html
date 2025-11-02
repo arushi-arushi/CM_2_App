@@ -103,6 +103,7 @@
             <th>Current Stock</th>
             <th>Qty</th>
             <th>Purchase Price</th>
+            <th>Cost/Item</th>
             <th>Total</th>
             <th>UOM</th>
             <th>Child UOM</th>
@@ -111,6 +112,7 @@
             <th>Min Stock</th>
             <th>Warranty Period</th>
             <th>Location</th>
+            <th>GST Item</th>
             <th class="text-center">Action</th>
           </tr>
         </ng-template>
@@ -128,7 +130,8 @@
             <td>{{ product.curStock }}</td>
             <td>{{ product.quantity }}</td>
             <td>{{ product.purchasePrice }}</td>
-            <td>{{ product.total }}</td>
+            <td>{{ product.costPerItem | number:'1.2-2'}}</td>
+            <td>{{ product.total | number:'1.2-2'}}</td>
             <td>{{ product.uom }}</td>
             <td>{{ product.childUOM}}</td>
             <td>{{ product.mrp }}</td>
@@ -136,6 +139,7 @@
             <td>{{ product.minStock }}</td>
             <td>{{ product.warPeriod }}</td>
             <td>{{ product.location }}</td>
+            <td>{{ product.gstItem}}</td>
             <td class="text-center">
               <i class="pi pi-pencil cursor-pointer text-blue-500" (click)="openEditDialog(product)"></i>
               <i class="pi pi-trash ms-2 cursor-pointer text-red-500" (click)="deleteItem(product)"></i>

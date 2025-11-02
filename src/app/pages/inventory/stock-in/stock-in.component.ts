@@ -21,8 +21,6 @@ import { AddinventoryComponent } from "../addinventory/addinventory.component";
 import { StockIn } from '@/types/stockin.model';
 import { InventoryService } from '@/core/services/inventory.service';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
-import { updatePreset } from '@primeng/themes';
-import { filter } from 'rxjs';
 import { ConfirmationService } from 'primeng/api';
 import { CheckboxModule } from 'primeng/checkbox';
 import { Paginator } from 'primeng/paginator';
@@ -168,6 +166,7 @@ filterInvoiceNo(event:any){
 
 onSave(updatedData:any){
     const hasChildUOM= updatedData.childUOMDetails?.some((u:any)=> u.childUOM || u.conversion || u.mrp);
+    const costPerItem=updatedData.qty && updatedData.purchasePrice ? (updatedData.purchasePrice/updatedData.qty).toFixed(2) : 0;
     const mappedData={
         selection:true,
      code: updatedData.itemCode.label ||updatedData.itemCode,
@@ -175,6 +174,7 @@ onSave(updatedData:any){
      category:updatedData.category,
      curStock: updatedData.curStock,
     purchasePrice: updatedData.purchasePrice,
+    costPerItem:costPerItem,
     quantity: updatedData.qty,
     total: (updatedData.purchasePrice) * (updatedData.qty),
     uom: updatedData.parentUOM,
@@ -184,6 +184,7 @@ onSave(updatedData:any){
     minStock: updatedData.minStock,
     warPeriod: updatedData.warPeriod,
     location: updatedData.location,
+    gstItem:updatedData.gstItem===true?'Yes':'No',
     };
     if(this.mode==='edit' && this.selectedRow){
         const index=this.products.findIndex(p=>p.code === this.selectedRow.code);
