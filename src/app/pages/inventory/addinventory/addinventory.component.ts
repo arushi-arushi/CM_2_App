@@ -66,7 +66,7 @@ export class AddinventoryComponent {
   @Input() editData: any;
   @Input() mode : 'add' |'edit' ='add';
   @Output() save=new EventEmitter<any>();
-  @Output() childUom = new EventEmitter<boolean>();
+  @Output() childUom = new EventEmitter<boolean>() ;
 
   addForm!: FormGroup;
 filteredItemCode:any[]=[];
