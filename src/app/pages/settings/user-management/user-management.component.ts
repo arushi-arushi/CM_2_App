@@ -120,7 +120,7 @@ export class UserManagementComponent {
   /** ✅ Submit Form **/
   onSubmit() {
     if (this.userForm.invalid) {
-      this.userForm.markAllAsTouched();
+      this.userForm.markAllAsTouched() ;
       return;
     }
 
