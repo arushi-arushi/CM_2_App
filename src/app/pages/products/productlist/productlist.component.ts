@@ -46,7 +46,7 @@ import { GlobalFilterComponent } from '@/shared/global-filter/global-filter.comp
         ConfirmDialogModule,
         CheckboxModule,
         AddinventoryComponent,
-        // GlobalFilterComponent   
+        GlobalFilterComponent   
     ],
     templateUrl: './productlist.component.html',
     styleUrl: './productlist.component.scss',
@@ -92,7 +92,6 @@ export class ProductlistComponent {
         this.updateForm = this.fb.group({
             category: ['', Validators.required],
             item: ['', Validators.required],
-            globalFilter: ['']
         });
         this.updateForm.valueChanges.subscribe(() => {
             this.filterProducts();
@@ -125,14 +124,14 @@ export class ProductlistComponent {
         console.log('filtered data:', this.filteredProducts);
     }
     applyGlobalFilter() {
-        const searchTerm = this.updateForm.get('globalFilter')?.value?.toLowerCase() || '';
-        this.filteredProducts = this.products.filter((p) => {
-            return Object.values(p).some((value) => String(value).toLowerCase().includes(searchTerm));
-        });
-        // const searchTerm=this.globalFilter?.toLowerCase() || '';
-        // this.filteredProducts=this.products.filter((p)=>{
-        //     return Object.values(p).some((value)=>String(value).toLowerCase().includes(searchTerm));
+        // const searchTerm = this.updateForm.get('globalFilter')?.value?.toLowerCase() || '';
+        // this.filteredProducts = this.products.filter((p) => {
+        //     return Object.values(p).some((value) => String(value).toLowerCase().includes(searchTerm));
         // });
+        const searchTerm=this.globalFilter?.toLowerCase() || '';
+        this.filteredProducts=this.products.filter((p)=>{
+             Object.values(p).some((value)=>String(value).toLowerCase().includes(searchTerm));
+        });
     }
     onPageChange(event: any) {
         this.first = event.first;
